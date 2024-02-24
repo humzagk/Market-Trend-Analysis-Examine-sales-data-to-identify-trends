@@ -1,4 +1,4 @@
-# Market-Trend-Analysis-Examine-sales-data-to-identify-trends-and-predict-future-demand
+# Market-Trend-Analysis-Examine-sales-data-to-identify-trends
 
 Market Trend Analysis: Examine sales data to identify trends and predict future demand
 Research Questions: 
