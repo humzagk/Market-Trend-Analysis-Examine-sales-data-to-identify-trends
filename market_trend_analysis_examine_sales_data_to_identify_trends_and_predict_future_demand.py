@@ -28,13 +28,13 @@ top_5_products = total_sales_per_product.head(5)
 
 # Extracting monthly sales data for these top 5 products
 top_5_products_list = top_5_products['Product'].tolist()
-monthly_sales_top_5 = sales_data[sales_data['Product'].isin(top_5_products_list)]
+monthly_sales_top_5 = sales_data[sales_data['Product'].isin(top_5_products_list)].copy()
 
 # Converting 'Order Date' to 'Year-Month' format
 monthly_sales_top_5['Year-Month'] = monthly_sales_top_5['Order Date'].dt.strftime('%Y-%m')
 
 # Grouping by 'Product' and 'Year-Month'
-monthly_sales_top_5 = monthly_sales_top_5.groupby(['Product', 'Year-Month']).sum().reset_index()
+monthly_sales_top_5 = monthly_sales_top_5.groupby(['Product', 'Year-Month'])['Sales'].sum().reset_index()
 
 # Plotting total sales for top 5 products
 plt.figure(figsize=(12, 6))
@@ -102,7 +102,7 @@ plt.show()
 # and then a heatmap to visualize the correlation
 
 # Creating a pivot table for the heatmap
-pivot_table = city_product_sales.pivot('City', 'Product', 'Sales')
+pivot_table = city_product_sales.pivot(index='City', columns='Product', values='Sales')
 pivot_table = pivot_table.fillna(0) # Filling NaN values with 0 for better visualization
 
 # Plotting the heatmap
@@ -137,7 +137,7 @@ plt.show()
 # and then plot a line chart for each product type
 
 # Creating a pivot table for the line charts
-pivot_table_hour_product = hourly_product_sales.pivot('Hour', 'Product', 'Sales')
+pivot_table_hour_product = hourly_product_sales.pivot(index='Hour', columns='Product', values='Sales')
 pivot_table_hour_product = pivot_table_hour_product.fillna(0) # Filling NaN values with 0 for better visualization
 
 # Plotting a line chart for each product type to see the hourly sales trend
