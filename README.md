@@ -1,14 +1,46 @@
-# Market-Trend-Analysis-Examine-sales-data-to-identify-trends
+# Market Trend Analysis: Sales Data
 
-Market Trend Analysis: Examine sales data to identify trends and predict future demand
-Research Questions: 
-Based on the "Sales Data" dataset, the five research questions we will explore using data analysis:
-Dataset:  https://www.kaggle.com/datasets/beekiran/sales-data-analysis?resource=download
-File Name:    ( Sales Data.csv  )
+Exploratory analysis of 2019 sales records from an electronics retailer. It looks at which products sell most, how demand changes by month, city and hour of the day, and how price relates to the quantity ordered. The analysis uses pandas, Matplotlib and seaborn in a Jupyter notebook.
 
+**Highlights**
 
-1. Product Performance Analysis: Which products have the highest sales, and what patterns can be observed in their sales over time?
+- The Macbook Pro Laptop generates the most revenue, followed by the iPhone and the ThinkPad Laptop.
+- Sales build through the year and peak in December.
+- San Francisco is the largest market by a clear margin, followed by Los Angeles and New York City.
+- Orders peak around 12 PM and 7 PM.
+- Cheaper accessories sell in far higher quantities, but premium products drive total revenue.
 
+## Dataset
+
+[Sales Data Analysis on Kaggle](https://www.kaggle.com/datasets/beekiran/sales-data-analysis) (file: `Sales Data.csv`). It isn't included in this repo. Download it from Kaggle and place it next to the notebook.
+
+## How to run
+
+```bash
+git clone https://github.com/humzagk/Market-Trend-Analysis-Examine-sales-data-to-identify-trends.git
+cd Market-Trend-Analysis-Examine-sales-data-to-identify-trends
+pip install -r requirements.txt jupyter
+# put "Sales Data.csv" in this folder, then:
+jupyter notebook Market_Trend_Analysis_Examine_sales_data_to_identify_trends_and_predict_future_demand.ipynb
+```
+
+You can also run the analysis as a plain script with `python market_trend_analysis_examine_sales_data_to_identify_trends_and_predict_future_demand.py`, or open the notebook in Google Colab and upload the CSV there. A PDF export of the notebook with all charts is included as well.
+
+## Research questions
+
+1. **Product performance**: which products have the highest sales, and how do they change over time?
+2. **Seasonal demand**: how do sales change from month to month?
+3. **Geography**: which cities sell the most, and do product preferences differ by city?
+4. **Time of day**: when are sales highest, and does this differ by product?
+5. **Price sensitivity**: how does price affect the quantity sold?
+
+## 1. Product Performance Analysis
+
+*Which products have the highest sales, and what patterns can be observed in their sales over time?*
+
+![Total sales of the top 5 products](images/top5-products-total-sales.png)
+
+![Monthly sales of the top 5 products](images/top5-products-monthly-sales.png)
 
 Based on the bar chart, the product with the highest sales is the "Macbook Pro Laptop". The iPhone follows as the second highest in total sales, with the "ThinkPad Laptop" not far behind. The "Google Phone" and "27in 4K Gaming Monitor" have lower total sales compared to the top three products.
 From the line chart depicting sales over time, several patterns emerge:
@@ -23,9 +55,11 @@ From the line chart depicting sales over time, several patterns emerge:
 
 In summary, the "Macbook Pro Laptop" leads in total sales with evident seasonal peaks, while other products show varying degrees of consistency and seasonal influence. To further this analysis, we could investigate external factors affecting these trends, like marketing campaigns, product releases, or broader economic factors.
 
+## 2. Seasonal Demand Trends
 
-2. Seasonal Demand Trends: How do sales fluctuate across different months? Are there any specific months where sales peak or dip significantly?
+*How do sales fluctuate across different months? Are there any specific months where sales peak or dip significantly?*
 
+![Total sales by month](images/monthly-sales.png)
 
 From the line chart we can infer the following about seasonal demand trends:
 
@@ -39,10 +73,13 @@ From the line chart we can infer the following about seasonal demand trends:
 
 The data suggests that there are significant seasonal fluctuations in sales, with the end of the year being particularly strong for sales. We can use this information to plan company inventory and marketing strategies accordingly, to capitalize on high-demand periods and prepare for slower sales months.
 
+## 3. Geographical Sales Trends
 
+*Which cities have the highest sales volumes? Is there a correlation between the city and the type of product sold?*
 
-3. Geographical Sales Trends: Which cities have the highest sales volumes? Is there a correlation between the city and the type of product sold?
+![Total sales by city](images/sales-by-city.png)
 
+![Heatmap of sales by city and product](images/city-product-heatmap.png)
 
 Geographical Sales Trends:
 
@@ -58,8 +95,13 @@ Geographical Sales Trends:
 
 From these observations, we can infer that location-specific marketing strategies and inventory stocking could be optimized based on the sales volumes and product preferences in each city. For example, in cities with high sales volumes for specific products, marketing efforts could be increased for those products, or related accessories and services could be offered to capitalize on the demand.
 
-4. Time-of-Day Analysis: At what times of the day are sales highest? How does this vary for different types of products?
+## 4. Time-of-Day Analysis
 
+*At what times of the day are sales highest? How does this vary for different types of products?*
+
+![Total sales by hour of day](images/sales-by-hour.png)
+
+![Hourly sales by product](images/hourly-sales-by-product.png)
 
 Based on the graphs, the inferences regarding the time-of-day analysis are:
 
@@ -77,10 +119,13 @@ Based on the graphs, the inferences regarding the time-of-day analysis are:
 
 These insights suggest that the time-of-day shopping patterns vary by product type, likely influenced by customer routines and the nature of the product. We could use this information to tailor our staffing levels, targeted promotions, and stock availability to match the times when specific products are most likely to be purchased.
 
+## 5. Price Impact on Sales Volume
 
-5. Price Impact on Sales Volume: How does the price of products affect their sales volume? Are there any trends indicating price sensitivity among different product categories?
+*How does the price of products affect their sales volume? Are there any trends indicating price sensitivity among different product categories?*
 
+![Average price vs quantity ordered](images/price-vs-quantity.png)
 
+![Regression of quantity ordered on price](images/price-quantity-regression.png)
 
 From the charts "Regression Analysis of Price and Sales Volume" and "Price Impact on Sales Volume," we can infer the following about the price impact on sales volume and price sensitivity:
 
@@ -93,3 +138,23 @@ From the charts "Regression Analysis of Price and Sales Volume" and "Price Impac
 4. Product-Specific Trends: Each product category may have its own price elasticity. For example, consumer electronics like smartphones and laptops may have a certain threshold of willingness to pay, beyond which sales volume might drop sharply. Conversely, essential accessories or lower-priced items may have less price elasticity due to their necessity or lower investment risk.
 
 These trends can provide valuable insights for pricing strategies, indicating that while price increases can lead to lower quantities sold, this doesn't necessarily result in lower total sales value, especially for premium or highly desired products. It also highlights the importance of understanding the price elasticity of different product categories when making pricing decisions.
+
+## Notes and limitations
+
+- The analysis is descriptive. It identifies trends and seasonality but doesn't fit a forecasting model, so "predict future demand" refers to what the trends suggest rather than to a trained predictor.
+- The final point on the monthly charts (January 2020) is near zero. That is consistent with the data ending in early January 2020 rather than a real collapse in sales.
+- The data covers one year from one retailer, so the seasonal patterns are based on a single cycle.
+
+## Repository contents
+
+| File | Description |
+|------|-------------|
+| `Market_Trend_Analysis_...ipynb` | Main notebook with code, charts and saved output |
+| `market_trend_analysis_...py` | The same analysis exported as a Python script |
+| `Market Trend Analysis; ...pdf` | PDF export of the notebook |
+| `images/` | Charts used in this README, taken from the notebook output |
+| `requirements.txt` | Python dependencies |
+
+## License
+
+[MIT](LICENSE)
